@@ -1,0 +1,119 @@
+# Dataset files - DO NOT COMMIT
+data/raw/HAM10000_metadata.csv
+data/raw/HAM10000_images_part_1/
+data/raw/HAM10000_images_part_2/
+data/processed/*.csv
+data/processed/*.npy
+data/processed/*.pkl
+
+# Model files - too large for git
+models/pretrained/*.pth
+models/pretrained/*.pt
+models/adapted/*.pth
+models/adapted/*.pt
+models/sram/*.pth
+models/sram/*.pt
+
+# Results and outputs
+results/performance/*.json
+results/performance/*.csv
+results/plots/*.png
+results/plots/*.pdf
+results/plots/*.jpg
+results/reports/*.pdf
+results/reports/*.html
+
+# Circuit simulation files
+circuits/qspice/*.qraw
+circuits/qspice/*.qlog
+circuits/qspice/*.op
+circuits/netlists/*.cir
+circuits/netlists/*.sp
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyTorch specific
+*.pth
+*.pt
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# Environment variables
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+pipeline.log
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Testing
+.coverage
+.pytest_cache/
+.tox/
+.nox/
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Large data files (keep structure but not content)
+# Keep .gitkeep files to maintain directory structure

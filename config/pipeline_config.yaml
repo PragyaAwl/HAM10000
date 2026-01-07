@@ -1,0 +1,74 @@
+# HAM10000 QSPICE Pipeline Configuration
+
+# Data Configuration
+data:
+  raw_data_path: "data/raw"
+  processed_data_path: "data/processed"
+  metadata_file: "HAM10000_metadata.csv"
+  image_dirs:
+    - "HAM10000_images_part_1"
+    - "HAM10000_images_part_2"
+  test_size: 0.2
+  validation_size: 0.1
+  random_seed: 42
+
+# Model Configuration
+model:
+  architecture: "efficientnet_b0"  # Options: resnet50, efficientnet_b0, etc.
+  pretrained: true
+  num_classes: 7
+  input_size: [224, 224]
+  batch_size: 32
+  learning_rate: 0.001
+  epochs: 10
+  early_stopping_patience: 3
+  
+# Image Preprocessing
+preprocessing:
+  resize_size: [224, 224]
+  normalize_mean: [0.485, 0.456, 0.406]  # ImageNet normalization
+  normalize_std: [0.229, 0.224, 0.225]
+  
+# SRAM Circuit Configuration
+sram:
+  cell_type: "6T"  # Options: 6T, 8T
+  transistor_width: 0.5  # micrometers
+  transistor_length: 0.18  # micrometers
+  supply_voltage: 1.2  # volts
+  word_line_voltage: 1.2  # volts
+  bit_line_capacitance: 1e-15  # farads
+  
+# QSPICE Configuration
+qspice:
+  simulation_time: 1e-6  # seconds
+  time_step: 1e-12  # seconds
+  temperature: 27  # Celsius
+  
+# Analysis Configuration
+analysis:
+  metrics:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "f1_score"
+  plot_formats: ["png", "pdf"]
+  report_format: "pdf"
+  
+# Testing Configuration
+testing:
+  property_test_iterations: 100
+  unit_test_coverage_threshold: 0.8
+  
+# Paths
+paths:
+  models:
+    pretrained: "models/pretrained"
+    adapted: "models/adapted"
+    sram: "models/sram"
+  circuits:
+    qspice: "circuits/qspice"
+    netlists: "circuits/netlists"
+  results:
+    performance: "results/performance"
+    plots: "results/plots"
+    reports: "results/reports"

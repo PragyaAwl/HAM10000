@@ -1,0 +1,3 @@
+dataset path link:
+C:\Users\agarw\.cache\kagglehub\datasets\kmader\skin-cancer-mnist-ham10000\versions\2
+
