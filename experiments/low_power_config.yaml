@@ -1,0 +1,10 @@
+experiment_name: low_power
+model:
+  architecture: efficientnet_b0
+  batch_size: 16
+  epochs: 50
+  learning_rate: 0.0001
+sram:
+  cell_type: 8T
+  supply_voltage: 0.8
+  transistor_width: 0.3

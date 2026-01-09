@@ -1,0 +1,50 @@
+{
+  "experiment_name": "my_experiment",
+  "description": "Description of this experiment",
+  "author": "Your Name",
+  "date": "2024-01-01",
+  "data": {
+    "raw_data_path": "data/raw",
+    "processed_data_path": "data/processed",
+    "test_size": 0.2,
+    "validation_size": 0.1,
+    "random_seed": 42
+  },
+  "model": {
+    "architecture": "efficientnet_b0",
+    "pretrained": true,
+    "num_classes": 7,
+    "input_size": [
+      224,
+      224
+    ],
+    "batch_size": 16,
+    "learning_rate": 0.0001,
+    "epochs": 50,
+    "early_stopping_patience": 10
+  },
+  "sram": {
+    "cell_type": "6T",
+    "supply_voltage": 1.2,
+    "transistor_width": 0.5,
+    "transistor_length": 0.18
+  },
+  "qspice": {
+    "simulation_time": "1e-6",
+    "time_step": "1e-12",
+    "temperature": 27
+  },
+  "analysis": {
+    "metrics": [
+      "accuracy",
+      "precision",
+      "recall",
+      "f1_score"
+    ],
+    "plot_formats": [
+      "png",
+      "pdf"
+    ],
+    "report_format": "pdf"
+  }
+}

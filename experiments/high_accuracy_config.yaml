@@ -1,0 +1,13 @@
+experiment_name: high_accuracy
+model:
+  architecture: efficientnet_b4
+  batch_size: 8
+  epochs: 100
+  input_size:
+  - 380
+  - 380
+  learning_rate: 5.0e-05
+sram:
+  cell_type: 6T
+  supply_voltage: 1.2
+  transistor_width: 0.5

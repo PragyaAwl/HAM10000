@@ -1,0 +1,11 @@
+experiment_name: high_precision
+model:
+  architecture: efficientnet_b0
+  batch_size: 16
+  epochs: 50
+  learning_rate: 0.0001
+sram:
+  bit_line_capacitance: 5.0e-16
+  cell_type: 6T
+  supply_voltage: 1.5
+  transistor_width: 0.8

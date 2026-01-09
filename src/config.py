@@ -30,6 +30,9 @@ class ModelConfig:
     learning_rate: float
     epochs: int
     early_stopping_patience: int
+    use_class_weights: bool
+    label_smoothing: float
+    dropout_rate: float
 
 
 @dataclass
@@ -38,6 +41,10 @@ class PreprocessingConfig:
     resize_size: list
     normalize_mean: list
     normalize_std: list
+    data_augmentation: bool
+    augmentation_strength: float
+    mixup_alpha: float
+    cutmix_alpha: float
 
 
 @dataclass

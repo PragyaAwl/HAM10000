@@ -1,0 +1,45 @@
+# HAM10000 QSPICE Pipeline Configuration Template
+
+# Experiment Information
+experiment_name: "my_experiment"
+description: "Description of this experiment"
+author: "Your Name"
+date: "2024-01-01"
+
+# Data Configuration
+data:
+  raw_data_path: "data/raw"
+  processed_data_path: "data/processed"
+  test_size: 0.2          # Fraction for test set (0.1-0.3)
+  validation_size: 0.1    # Fraction for validation set (0.1-0.2)
+  random_seed: 42         # For reproducible splits
+
+# Model Configuration
+model:
+  architecture: "efficientnet_b0"  # Options: efficientnet_b0, efficientnet_b4
+  pretrained: true                 # Use ImageNet pre-trained weights
+  num_classes: 7                   # HAM10000 has 7 skin lesion classes
+  input_size: [224, 224]           # Input image size [height, width]
+  batch_size: 16                   # Batch size for training
+  learning_rate: 0.0001            # Learning rate (0.00001-0.01)
+  epochs: 50                       # Number of training epochs
+  early_stopping_patience: 10      # Stop if no improvement for N epochs
+
+# SRAM Circuit Configuration
+sram:
+  cell_type: "6T"                  # Options: "6T", "8T"
+  supply_voltage: 1.2              # Supply voltage in volts (0.8-1.8)
+  transistor_width: 0.5            # Transistor width in micrometers
+  transistor_length: 0.18          # Transistor length in micrometers
+  
+# QSPICE Simulation Configuration
+qspice:
+  simulation_time: 1e-6            # Simulation time in seconds
+  time_step: 1e-12                 # Time step in seconds
+  temperature: 27                  # Temperature in Celsius
+
+# Analysis Configuration
+analysis:
+  metrics: ["accuracy", "precision", "recall", "f1_score"]
+  plot_formats: ["png", "pdf"]
+  report_format: "pdf"
