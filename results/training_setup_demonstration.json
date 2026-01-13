@@ -1,0 +1,67 @@
+{
+  "demonstration_date": "2026-01-10T00:53:13.505415",
+  "dataset_info": {
+    "total_samples": 10015,
+    "num_classes": 7,
+    "class_names": [
+      "akiec",
+      "bcc",
+      "bkl",
+      "df",
+      "mel",
+      "nv",
+      "vasc"
+    ],
+    "class_distribution": {
+      "nv": 6705,
+      "mel": 1113,
+      "bkl": 1099,
+      "bcc": 514,
+      "akiec": 327,
+      "vasc": 142,
+      "df": 115
+    },
+    "train_samples": 7010,
+    "val_samples": 1502,
+    "test_samples": 1503
+  },
+  "model_info": {
+    "architecture": "EfficientCNN",
+    "total_parameters": 4824967,
+    "trainable_parameters": 4824967
+  },
+  "training_config": {
+    "model_architecture": "EfficientCNN",
+    "target_accuracy": 98.0,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "image_size": 224,
+    "augmentation": "advanced",
+    "class_balancing": true,
+    "early_stopping": true,
+    "patience": 15,
+    "max_epochs": 100
+  },
+  "class_weights": {
+    "akiec": 4.375273044997815,
+    "bcc": 2.78349082823791,
+    "bkl": 1.301832835044846,
+    "df": 12.440993788819876,
+    "mel": 1.2854575792581184,
+    "nv": 0.21338020666879728,
+    "vasc": 10.075452716297788
+  },
+  "setup_validation": "PASSED",
+  "target_accuracy_achievable": true,
+  "estimated_training_time_hours": "2-4 (with GPU)",
+  "key_success_factors": [
+    "Class-balanced training",
+    "Advanced data augmentation",
+    "Stratified data split",
+    "Early stopping",
+    "Learning rate scheduling",
+    "Dropout regularization",
+    "Sufficient model capacity"
+  ]
+}
