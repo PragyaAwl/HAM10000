@@ -6,13 +6,13 @@ data/processed/*.csv
 data/processed/*.npy
 data/processed/*.pkl
 
-# Model files - too large for git
-models/pretrained/*.pth
-models/pretrained/*.pt
-models/adapted/*.pth
-models/adapted/*.pt
-models/sram/*.pth
-models/sram/*.pt
+# # Model files - too large for git
+# models/pretrained/*.pth
+# models/pretrained/*.pt
+# models/adapted/*.pth
+# models/adapted/*.pt
+# models/sram/*.pth
+# models/sram/*.pt
 
 # Results and outputs
 results/performance/*.json
