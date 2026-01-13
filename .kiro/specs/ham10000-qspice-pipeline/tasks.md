@@ -79,7 +79,7 @@ This implementation plan converts the HAM10000 QSPICE pipeline design into actio
     - _Requirements: 2.5_
 
 - [ ] 5. Implement weight extraction and conversion
-  - [ ] 5.1 Create weight extraction utilities
+  - [x] 5.1 Create weight extraction utilities
     - Extract all parameters from the HAM10000-trained EfficientNet model
     - Convert PyTorch tensors to numpy arrays for processing
     - Organize weights by layer type and size for SRAM mapping
