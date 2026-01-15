@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-01-16T00:48:50.012076",
+  "model": {
+    "name": "EfficientNet-B0",
+    "total_parameters": 4058580,
+    "training_accuracy": 88.74833555259654,
+    "classes": [
+      "akiec",
+      "bcc",
+      "bkl",
+      "df",
+      "mel",
+      "nv",
+      "vasc"
+    ]
+  },
+  "sram": {
+    "capacity_bytes": 256,
+    "frequency_mhz": 100,
+    "access_time_ns": 1.2
+  },
+  "inference": {
+    "samples_tested": 2,
+    "accuracy": 100.0,
+    "avg_latency_ms": 36.5929,
+    "avg_power_mw": 7.300000000000001,
+    "avg_energy_mj": 0.26712817,
+    "throughput_fps": 27.327705647816927
+  },
+  "results": [
+    {
+      "class_id": 2,
+      "class_name": "bkl",
+      "predicted_name": "bkl",
+      "confidence": 0.8471990613277501,
+      "latency_ms": 36.5929,
+      "power_mw": 7.300000000000001,
+      "energy_mj": 0.26712817,
+      "throughput_fps": 27.327705647816927,
+      "correct": true
+    },
+    {
+      "class_id": 4,
+      "class_name": "mel",
+      "predicted_name": "mel",
+      "confidence": 0.9031838383640364,
+      "latency_ms": 36.5929,
+      "power_mw": 7.300000000000001,
+      "energy_mj": 0.26712817,
+      "throughput_fps": 27.327705647816927,
+      "correct": true
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "timestamp": "2026-01-16T00:26:58.838572",
+  "model": {
+    "file": "C:\\Users\\agarw\\OneDrive\\Desktop\\HAM10000\\models\\best_efficientnet_b0_ham10000.pth",
+    "total_parameters": 4058580,
+    "total_size_float32_mb": 15.482440948486328,
+    "num_layers": 360
+  },
+  "sram": {
+    "capacity_bits": 2048,
+    "capacity_bytes": 256,
+    "capacity_mb": 0.000244140625,
+    "word_size_bits": 16,
+    "access_time_ns": 1.2,
+    "clock_mhz": 100
+  },
+  "analysis": {
+    "size_ratio": 63416.078125,
+    "can_fit_float32": false,
+    "can_fit_float16": false,
+    "can_fit_int8": false,
+    "can_fit_int4": false,
+    "estimated_read_time_ms": 0.26022,
+    "estimated_power_mw": 12.3,
+    "estimated_energy_mj": 0.003200706
+  }
+}

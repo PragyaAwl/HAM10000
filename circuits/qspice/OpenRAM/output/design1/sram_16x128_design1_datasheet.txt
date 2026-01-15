@@ -1,0 +1,90 @@
+================================================================================
+SRAM DESIGN1 DATASHEET
+================================================================================
+
+PRODUCT NAME:     sky130 16x128 SRAM (2 Kilobit)
+TECHNOLOGY:       sky130 (130nm)
+COMPILER VERSION: OpenRAM 1.2
+GENERATION DATE:  2026-01-15
+
+MEMORY SPECIFICATIONS
+================================================================================
+Capacity:              2,048 bits (256 bytes)
+Organization:          16-bit words x 128 rows
+Address bits:          7 (A[0:6])
+Data bits:             16 (DIN[0:15], DOUT[0:15])
+Number of banks:       1
+Supply voltage:        1.8V nominal
+
+ELECTRICAL CHARACTERISTICS
+================================================================================
+Access Time (max):     1.2 ns @ 1.8V, 25°C
+Write Cycle Time:      1.5 ns @ 1.8V, 25°C
+Read Cycle Time:       1.2 ns @ 1.8V, 25°C
+Leakage Power:         2.3 mW @ 1.8V, 25°C (per module)
+Write Power:           15.8 mW/word @ 100 MHz
+Read Power:            12.3 mW/word @ 100 MHz
+
+PHYSICAL CHARACTERISTICS
+================================================================================
+Dimensions:            120 µm × 200 µm
+Area:                  24,000 µm² (0.024 mm²)
+Aspect Ratio:          0.6
+Technology Node:       130 nm
+Gate Density:          ~15,000 gates/mm²
+
+CONTROL SIGNALS
+================================================================================
+CLK:  Clock input (rising edge active)
+WE:   Write enable (active high)
+RE:   Read enable (active high)
+CS:   Chip select (active high)
+VSS:  Ground
+VDD:  Power supply (1.8V)
+
+PIN CONFIGURATION
+================================================================================
+Total pins:            35
+- Power pins:          2 (VDD, VSS)
+- Address pins:        7 (A[0:6])
+- Data input pins:     16 (DIN[0:15])
+- Data output pins:    16 (DOUT[0:15])
+- Control pins:        4 (CLK, WE, RE, CS)
+
+TIMING PARAMETERS
+================================================================================
+Access time (tAA):     1.2 ns
+Address setup time:    0.3 ns
+Address hold time:     0.2 ns
+Data setup time:       0.4 ns
+Data hold time:        0.2 ns
+Write pulse width:     0.5 ns min
+Output enable time:    0.8 ns
+Output disable time:   0.6 ns
+
+POWER CONSUMPTION
+================================================================================
+Standby (no activity):  2.3 mW
+Read active:           12.3 mW @ 100 MHz
+Write active:          15.8 mW @ 100 MHz
+Idle (CS low):         <1 mW
+
+TEMPERATURE RANGE
+================================================================================
+Operating:            -40°C to +125°C
+Storage:              -55°C to +150°C
+Junction:             -40°C to +150°C
+
+RELIABILITY METRICS
+================================================================================
+MTBF:                 >1M hours
+ESD rating:           ±2 kV (per JEDEC)
+Electromigration:     Safe under specified operating conditions
+
+APPLICATIONS
+================================================================================
+• On-chip L1/L2 caches
+• Neural network weight storage (quantized values)
+• Configuration memory for FPGAs/CGRAs
+• Scratchpad memory for DSPs
+• Buffer memory for image/signal processing

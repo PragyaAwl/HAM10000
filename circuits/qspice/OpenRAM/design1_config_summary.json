@@ -1,0 +1,15 @@
+{
+  "name": "sram_16x128_design1",
+  "word_size": 16,
+  "num_words": 128,
+  "num_banks": 1,
+  "total_bits": 2048,
+  "total_bytes": 256,
+  "technology": "sky130",
+  "address_bits": 7,
+  "data_bits": 16,
+  "settings": {
+    "netlist_only": true,
+    "analytical_delay": true
+  }
+}

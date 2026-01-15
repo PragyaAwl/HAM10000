@@ -1,0 +1,84 @@
+* QSpice SRAM Design1 - Simple Working Example
+* This will display visible waveforms
+
+.title SRAM 16x128 Design1 Simulation
+
+* =====================================================
+* POWER SUPPLIES
+* =====================================================
+VDD VDD 0 DC 1.8
+
+* =====================================================
+* CLOCK - 100 MHz
+* =====================================================
+VCK CK 0 PULSE(0 1.8 0n 0.5n 0.5n 4.5n 10n)
+
+* =====================================================
+* CONTROL SIGNALS
+* =====================================================
+VWE WE 0 PULSE(0 1.8 5n 0.1n 0.1n 2n 20n)    ; Write pulses
+VRE RE 0 DC 1.8                                ; Read always on
+VCS CS 0 DC 1.8                                ; Chip always selected
+
+* =====================================================
+* ADDRESS BUS
+* =====================================================
+VA0 A0 0 PULSE(0 1.8 20n 0.1n 0.1n 5n 10n)   ; Toggle address bit 0
+VA1 A1 0 PULSE(0 1.8 30n 0.1n 0.1n 5n 10n)   ; Toggle address bit 1
+VA2 A2 0 PULSE(0 1.8 40n 0.1n 0.1n 5n 10n)   ; Toggle address bit 2
+VA3 A3 0 DC 0
+VA4 A4 0 DC 0
+VA5 A5 0 DC 0
+VA6 A6 0 DC 0
+
+* =====================================================
+* DATA INPUT BUS
+* =====================================================
+VDIN0 DIN0 0 PULSE(0 1.8 10n 0.1n 0.1n 2n 5n)
+VDIN1 DIN1 0 PULSE(0 1.8 12n 0.1n 0.1n 2n 5n)
+VDIN2 DIN2 0 PULSE(0 1.8 14n 0.1n 0.1n 2n 5n)
+VDIN3 DIN3 0 PULSE(0 1.8 16n 0.1n 0.1n 2n 5n)
+VDIN4 DIN4 0 DC 0
+VDIN5 DIN5 0 DC 0
+VDIN6 DIN6 0 DC 0
+VDIN7 DIN7 0 DC 0
+VDIN8 DIN8 0 DC 0
+VDIN9 DIN9 0 DC 0
+VDIN10 DIN10 0 DC 0
+VDIN11 DIN11 0 DC 0
+VDIN12 DIN12 0 DC 0
+VDIN13 DIN13 0 DC 0
+VDIN14 DIN14 0 DC 0
+VDIN15 DIN15 0 DC 0
+
+* =====================================================
+* OUTPUT SIMULATION (resistive loads)
+* =====================================================
+RCK CK 0 10k
+RA0 A0 0 10k
+RA1 A1 0 10k
+RA2 A2 0 10k
+RWE WE 0 10k
+RRE RE 0 10k
+RDIN0 DIN0 0 10k
+RDIN1 DIN1 0 10k
+RDIN2 DIN2 0 10k
+RDIN3 DIN3 0 10k
+
+* =====================================================
+* TRANSIENT SIMULATION
+* =====================================================
+.tran 0 100ns 0 1ns
+
+* =====================================================
+* EXPLICIT PLOT COMMANDS (Tell QSpice what to show)
+* =====================================================
+.plot tran v(CK) v(WE) v(RE) v(CS) v(A0) v(A1) v(A2) v(DIN0) v(DIN1) v(DIN2) v(DIN3)
+
+* =====================================================
+* MEASUREMENTS
+* =====================================================
+.meas tran CLK_Freq TRIG v(CK) VAL=0.9 RISE=1 TARG v(CK) VAL=0.9 RISE=2
+.meas tran CLK_Period TRIG v(CK) VAL=0.9 RISE=1 TARG v(CK) VAL=0.9 RISE=2
+
+.end

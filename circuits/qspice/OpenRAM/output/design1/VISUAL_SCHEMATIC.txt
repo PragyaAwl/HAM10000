@@ -1,0 +1,266 @@
+SRAM 16x128 - VISUAL BLOCK DIAGRAM
+===================================
+
+INPUT SIGNALS:
+  CLK (Clock)          ---+
+  CS (Chip Select)     ---+
+  WE (Write Enable)    ---+----> CONTROL LOGIC
+  RE (Read Enable)     ---+
+  A[0:6] (Address)     ---+
+  DIN[0:15] (Data In)  ---+
+
+OUTPUT SIGNALS:
+                            -----> DOUT[0:15] (Data Out)
+
+
+COMPLETE BLOCK DIAGRAM:
+======================
+
+     ┌─────────────────────────────────────────────────┐
+     │        SRAM 16×128 (2 Kilobit) Controller       │
+     │         sky130 130nm Technology                 │
+     │              1.8V Supply                        │
+     └─────────────────────────────────────────────────┘
+                              │
+              ┌───────────────┼───────────────┐
+              │               │               │
+              V               V               V
+         ┌─────────┐   ┌─────────┐   ┌──────────────┐
+         │  CLOCK  │   │ CONTROL │   │  ADDRESS     │
+         │    ÷2   │   │ LOGIC   │   │  DECODER     │
+         │ (OSC)   │   │  (AND,  │   │   (7:128)    │
+         │         │   │   OR)   │   │              │
+         └────┬────┘   └────┬────┘   └──────┬───────┘
+              │             │               │
+              │ CK          │ SA_EN,WR_EN   │ WL[0:127]
+              │             │               │
+              │             │    ┌──────────┴─────────────┐
+              │             │    │                        │
+              │             │    V                        V
+              │             │  ┌──────────────────────────────────┐
+              │             │  │                                  │
+              │             │  │      MEMORY ARRAY                │
+              │             │  │    16 Columns × 128 Rows        │
+              │             │  │     (6T SRAM Cells)             │
+              │             │  │                                  │
+              │             │  │  BIT LINES:  BL[0:15]           │
+              │             │  │             BL_B[0:15]          │
+              │             │  │                                  │
+              │             │  └────────────┬─────────────────────┘
+              │             │               │
+              │             │          ┌────┴────┐
+              │             │          │          │
+              │             │    BL[0:15]    BL_B[0:15]
+              │             │          │          │
+              │             │          V          V
+              │             │      ┌────────────────────┐
+              │             │      │  SENSE AMPLIFIERS  │
+              │             │      │  (Differential     │
+              │      ┌──────┴─────→│   Amplifier ×16)   │
+              │      │             │                    │
+              │      │ SA_EN       └─────┬──────────────┘
+              │      │                   │
+              │      │              ┌────┴─────┐
+              │      │              │           │
+              │      │              │ Sensed   │
+              │      │              │ Data     │
+              │      │              V           V
+              │      │          ┌─────────────────────────┐
+              │      │          │  COLUMN MULTIPLEXER    │
+              │      │          │   (16:1 MUX)           │
+              │      │          │   & (1:16 DMUX)        │
+              │      │          │                        │
+              │      │          │  Selects which bit    │
+              │      │          │  connects to output   │
+              │      │          └──────────┬─────────────┘
+              │      │                     │
+         ┌────┴──────┴─────────┬───────────┴──────┐
+         │                     │                  │
+         V                     V                  V
+    ┌──────────┐        ┌──────────┐        ┌──────────┐
+    │ WRITE    │        │  OUTPUT  │        │ READ     │
+    │ DRIVER   │        │  BUFFER  │        │ CONTROL  │
+    │ (Strong  │        │(Inverter)│        │          │
+    │  current)│        │          │        │          │
+    └────┬─────┘        └────┬─────┘        └──────────┘
+         │                   │
+    DIN[0:15]          DOUT[0:15]
+
+
+SIGNAL FLOW DURING READ OPERATION:
+==================================
+
+1. Address A[0:6] →┌──────────────┐
+                   │   DECODER    │──→ Word Line WL[i]
+                   └──────────────┘
+                           │
+                           V
+                   ┌──────────────┐
+                   │ Memory Array │
+                   │ (Cell at WL) │──→ Bit Line (small voltage)
+                   └──────────────┘
+                           │
+                           V
+                   ┌──────────────┐
+                   │   Sense      │
+    RE (Enable) ──→│   Amplifier  │──→ Full voltage (0V or 1.8V)
+                   └──────────────┘
+                           │
+                           V
+                   ┌──────────────┐
+                   │  Output      │
+                   │  Buffer      │──→ DOUT[0:15]
+                   └──────────────┘
+
+
+SIGNAL FLOW DURING WRITE OPERATION:
+===================================
+
+1. Address A[0:6] →┌──────────────┐
+                   │   DECODER    │──→ Word Line WL[i]
+                   └──────────────┘
+
+2. Data In DIN[0:15]→┌──────────────┐
+    WE=1             │   Write      │
+                     │   Driver     │
+                     │(strong current)
+                     └──────┬───────┘
+                            │
+                            V
+                   ┌──────────────┐
+                   │ Memory Array │
+                   │ (Cell latch) │──→ Forces cell to new state
+                   │   switches   │
+                   └──────────────┘
+
+
+TIMING DIAGRAM:
+===============
+
+          Time: 0ns        50ns       100ns
+                 │          │          │
+     CLK        │‾|_|‾|_|‾|_|‾|_|‾|_|
+                │
+     CS         ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+                │
+     WE         |______|‾‾‾|_________|
+                │      ↑   ↑
+     RE         ‾‾‾‾‾‾‾‾‾‾‾|‾‾‾‾‾‾‾‾
+                │           ↑
+     A[0:6]     |_ADDRESS_|‾|_ADDRESS_|
+                │         ↑ ↑        ↑
+     DIN[0:15]  |___DATA_|  |___DATA|
+                │      ↑     ↑      ↑
+     DOUT[0:15] |__READ_|    |__READ|
+                │      ↑     ↑      ↑
+                │    WRITE OP  READ OP
+
+
+COMPONENT SYMBOL REFERENCE:
+============================
+
+  Clock Generator (Oscillator):
+    ╱╲╱╲╱╲╱╲  or  VDD ─┬─ 
+                      ╱ ╲
+                     │O │ 
+                      ╲ ╱
+                      └─ GND
+
+  AND Gate:
+    ─╲
+     ├─── output
+    ─╱
+
+  OR Gate:
+    ─╲
+    ─┤├─── output
+    ─╱
+
+  NOT Gate / Inverter:
+    ─▷○─── output
+
+  Decoder:
+    A0 ─┐
+    A1 ─┤├─┬─ WL0
+    A2 ─┤DEC├─ WL1
+    A3 ─┤├─ ...
+         └─ WLn
+
+  Sense Amplifier:
+     BL ──────┬──┐
+              │  │
+             /│  │
+            / │  │
+           │  ├──── output
+            \ │  │
+             \│  │
+              │  │
+     BL_B ────┴──┘
+
+  MUX (Multiplexer):
+    In[0] ──────┐
+    In[1] ──┤   │
+    In[2] ──┤MUX├─── Out
+    In[n] ──┤   │
+              └─ Sel
+
+  Output Buffer:
+    In ──▷│▸│─── Out
+           ‾
+
+
+CONTROL SIGNALS TRUTH TABLE:
+=============================
+
+  CS | WE | RE | Operation
+  ---|----|----|-------------------
+  0  | X  | X  | Standby (Disabled)
+  1  | 0  | 1  | READ (Output data)
+  1  | 1  | 0  | WRITE (Input data)
+  1  | 1  | 1  | WRITE (special)
+  1  | 0  | 0  | HOLD (No op)
+
+  X = Don't care (any value)
+
+
+KEY BLOCKS SUMMARY:
+===================
+
+┌─ MEMORY ARRAY ────────────────────────────┐
+│  • 128 word lines (rows)                 │
+│  • 16 bit lines × 2 (pairs)              │
+│  • 2,048 SRAM cells (6T each)            │
+│  • Stores 2 Kilobits                     │
+└────────────────────────────────────────────┘
+
+┌─ DECODER ─────────────────────────────────┐
+│  • 7-input (A[0:6])                      │
+│  • 128 output word lines                 │
+│  • Selects 1 row at a time               │
+└────────────────────────────────────────────┘
+
+┌─ SENSE AMPLIFIER ─────────────────────────┐
+│  • 16 differential amplifiers             │
+│  • Detects ~100mV signal                 │
+│  • Amplifies to full 1.8V                │
+│  • Detects data during READ              │
+└────────────────────────────────────────────┘
+
+┌─ WRITE DRIVER ────────────────────────────┐
+│  • 16 driver circuits                    │
+│  • Provides strong current               │
+│  • Overwrites cell data                  │
+│  • Active during WRITE                   │
+└────────────────────────────────────────────┘
+
+┌─ CONTROL LOGIC ───────────────────────────┐
+│  • AND/OR/NOT gates                      │
+│  • Generates timing signals              │
+│  • Enables sense amps & drivers          │
+│  • Synchronizes with clock               │
+└────────────────────────────────────────────┘
+
+
+---
+Created: January 16, 2026
+SRAM Design: 16×128 words, sky130 130nm

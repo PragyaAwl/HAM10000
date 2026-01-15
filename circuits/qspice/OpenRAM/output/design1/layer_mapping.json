@@ -1,0 +1,452 @@
+[
+  {
+    "layer": "backbone.classifier.1",
+    "original_params": 8967,
+    "original_bytes": 35868,
+    "int8_bytes": 8967,
+    "sram_addr_offset": 0,
+    "fits_in_sram": false,
+    "num_sram_words": 4484
+  },
+  {
+    "layer": "backbone.features.0.0",
+    "original_params": 864,
+    "original_bytes": 3456,
+    "int8_bytes": 864,
+    "sram_addr_offset": 4,
+    "fits_in_sram": false,
+    "num_sram_words": 432
+  },
+  {
+    "layer": "backbone.features.0.1",
+    "original_params": 129,
+    "original_bytes": 516,
+    "int8_bytes": 129,
+    "sram_addr_offset": 52,
+    "fits_in_sram": true,
+    "num_sram_words": 65
+  },
+  {
+    "layer": "backbone.features.1.0.block.0.0",
+    "original_params": 288,
+    "original_bytes": 1152,
+    "int8_bytes": 288,
+    "sram_addr_offset": 117,
+    "fits_in_sram": false,
+    "num_sram_words": 144
+  },
+  {
+    "layer": "backbone.features.1.0.block.0.1",
+    "original_params": 129,
+    "original_bytes": 516,
+    "int8_bytes": 129,
+    "sram_addr_offset": 5,
+    "fits_in_sram": true,
+    "num_sram_words": 65
+  },
+  {
+    "layer": "backbone.features.1.0.block.1.fc1",
+    "original_params": 264,
+    "original_bytes": 1056,
+    "int8_bytes": 264,
+    "sram_addr_offset": 70,
+    "fits_in_sram": false,
+    "num_sram_words": 132
+  },
+  {
+    "layer": "backbone.features.1.0.block.1.fc2",
+    "original_params": 288,
+    "original_bytes": 1152,
+    "int8_bytes": 288,
+    "sram_addr_offset": 74,
+    "fits_in_sram": false,
+    "num_sram_words": 144
+  },
+  {
+    "layer": "backbone.features.1.0.block.2.0",
+    "original_params": 512,
+    "original_bytes": 2048,
+    "int8_bytes": 512,
+    "sram_addr_offset": 90,
+    "fits_in_sram": false,
+    "num_sram_words": 256
+  },
+  {
+    "layer": "backbone.features.1.0.block.2.1",
+    "original_params": 65,
+    "original_bytes": 260,
+    "int8_bytes": 65,
+    "sram_addr_offset": 90,
+    "fits_in_sram": true,
+    "num_sram_words": 33
+  },
+  {
+    "layer": "backbone.features.2.0.block.0.0",
+    "original_params": 1536,
+    "original_bytes": 6144,
+    "int8_bytes": 1536,
+    "sram_addr_offset": 123,
+    "fits_in_sram": false,
+    "num_sram_words": 768
+  },
+  {
+    "layer": "backbone.features.2.0.block.0.1",
+    "original_params": 385,
+    "original_bytes": 1540,
+    "int8_bytes": 385,
+    "sram_addr_offset": 123,
+    "fits_in_sram": false,
+    "num_sram_words": 193
+  },
+  {
+    "layer": "backbone.features.2.0.block.1.0",
+    "original_params": 864,
+    "original_bytes": 3456,
+    "int8_bytes": 864,
+    "sram_addr_offset": 60,
+    "fits_in_sram": false,
+    "num_sram_words": 432
+  },
+  {
+    "layer": "backbone.features.2.0.block.1.1",
+    "original_params": 385,
+    "original_bytes": 1540,
+    "int8_bytes": 385,
+    "sram_addr_offset": 108,
+    "fits_in_sram": false,
+    "num_sram_words": 193
+  },
+  {
+    "layer": "backbone.features.2.0.block.2.fc1",
+    "original_params": 388,
+    "original_bytes": 1552,
+    "int8_bytes": 388,
+    "sram_addr_offset": 45,
+    "fits_in_sram": false,
+    "num_sram_words": 194
+  },
+  {
+    "layer": "backbone.features.2.0.block.2.fc2",
+    "original_params": 480,
+    "original_bytes": 1920,
+    "int8_bytes": 480,
+    "sram_addr_offset": 111,
+    "fits_in_sram": false,
+    "num_sram_words": 240
+  },
+  {
+    "layer": "backbone.features.2.0.block.3.0",
+    "original_params": 2304,
+    "original_bytes": 9216,
+    "int8_bytes": 2304,
+    "sram_addr_offset": 95,
+    "fits_in_sram": false,
+    "num_sram_words": 1152
+  },
+  {
+    "layer": "backbone.features.2.0.block.3.1",
+    "original_params": 97,
+    "original_bytes": 388,
+    "int8_bytes": 97,
+    "sram_addr_offset": 95,
+    "fits_in_sram": true,
+    "num_sram_words": 49
+  },
+  {
+    "layer": "backbone.features.2.1.block.0.0",
+    "original_params": 3456,
+    "original_bytes": 13824,
+    "int8_bytes": 3456,
+    "sram_addr_offset": 16,
+    "fits_in_sram": false,
+    "num_sram_words": 1728
+  },
+  {
+    "layer": "backbone.features.2.1.block.0.1",
+    "original_params": 577,
+    "original_bytes": 2308,
+    "int8_bytes": 577,
+    "sram_addr_offset": 80,
+    "fits_in_sram": false,
+    "num_sram_words": 289
+  },
+  {
+    "layer": "backbone.features.2.1.block.1.0",
+    "original_params": 1296,
+    "original_bytes": 5184,
+    "int8_bytes": 1296,
+    "sram_addr_offset": 113,
+    "fits_in_sram": false,
+    "num_sram_words": 648
+  },
+  {
+    "layer": "backbone.features.2.1.block.1.1",
+    "original_params": 577,
+    "original_bytes": 2308,
+    "int8_bytes": 577,
+    "sram_addr_offset": 121,
+    "fits_in_sram": false,
+    "num_sram_words": 289
+  },
+  {
+    "layer": "backbone.features.2.1.block.2.fc1",
+    "original_params": 870,
+    "original_bytes": 3480,
+    "int8_bytes": 870,
+    "sram_addr_offset": 26,
+    "fits_in_sram": false,
+    "num_sram_words": 435
+  },
+  {
+    "layer": "backbone.features.2.1.block.2.fc2",
+    "original_params": 1008,
+    "original_bytes": 4032,
+    "int8_bytes": 1008,
+    "sram_addr_offset": 77,
+    "fits_in_sram": false,
+    "num_sram_words": 504
+  },
+  {
+    "layer": "backbone.features.2.1.block.3.0",
+    "original_params": 3456,
+    "original_bytes": 13824,
+    "int8_bytes": 3456,
+    "sram_addr_offset": 69,
+    "fits_in_sram": false,
+    "num_sram_words": 1728
+  },
+  {
+    "layer": "backbone.features.2.1.block.3.1",
+    "original_params": 97,
+    "original_bytes": 388,
+    "int8_bytes": 97,
+    "sram_addr_offset": 5,
+    "fits_in_sram": true,
+    "num_sram_words": 49
+  },
+  {
+    "layer": "backbone.features.3.0.block.0.0",
+    "original_params": 3456,
+    "original_bytes": 13824,
+    "int8_bytes": 3456,
+    "sram_addr_offset": 54,
+    "fits_in_sram": false,
+    "num_sram_words": 1728
+  },
+  {
+    "layer": "backbone.features.3.0.block.0.1",
+    "original_params": 577,
+    "original_bytes": 2308,
+    "int8_bytes": 577,
+    "sram_addr_offset": 118,
+    "fits_in_sram": false,
+    "num_sram_words": 289
+  },
+  {
+    "layer": "backbone.features.3.0.block.1.0",
+    "original_params": 3600,
+    "original_bytes": 14400,
+    "int8_bytes": 3600,
+    "sram_addr_offset": 23,
+    "fits_in_sram": false,
+    "num_sram_words": 1800
+  },
+  {
+    "layer": "backbone.features.3.0.block.1.1",
+    "original_params": 577,
+    "original_bytes": 2308,
+    "int8_bytes": 577,
+    "sram_addr_offset": 31,
+    "fits_in_sram": false,
+    "num_sram_words": 289
+  },
+  {
+    "layer": "backbone.features.3.0.block.2.fc1",
+    "original_params": 870,
+    "original_bytes": 3480,
+    "int8_bytes": 870,
+    "sram_addr_offset": 64,
+    "fits_in_sram": false,
+    "num_sram_words": 435
+  },
+  {
+    "layer": "backbone.features.3.0.block.2.fc2",
+    "original_params": 1008,
+    "original_bytes": 4032,
+    "int8_bytes": 1008,
+    "sram_addr_offset": 115,
+    "fits_in_sram": false,
+    "num_sram_words": 504
+  },
+  {
+    "layer": "backbone.features.3.0.block.3.0",
+    "original_params": 5760,
+    "original_bytes": 23040,
+    "int8_bytes": 5760,
+    "sram_addr_offset": 107,
+    "fits_in_sram": false,
+    "num_sram_words": 2880
+  },
+  {
+    "layer": "backbone.features.3.0.block.3.1",
+    "original_params": 161,
+    "original_bytes": 644,
+    "int8_bytes": 161,
+    "sram_addr_offset": 43,
+    "fits_in_sram": true,
+    "num_sram_words": 81
+  },
+  {
+    "layer": "backbone.features.3.1.block.0.0",
+    "original_params": 9600,
+    "original_bytes": 38400,
+    "int8_bytes": 9600,
+    "sram_addr_offset": 124,
+    "fits_in_sram": false,
+    "num_sram_words": 4800
+  },
+  {
+    "layer": "backbone.features.3.1.block.0.1",
+    "original_params": 961,
+    "original_bytes": 3844,
+    "int8_bytes": 961,
+    "sram_addr_offset": 60,
+    "fits_in_sram": false,
+    "num_sram_words": 481
+  },
+  {
+    "layer": "backbone.features.3.1.block.1.0",
+    "original_params": 6000,
+    "original_bytes": 24000,
+    "int8_bytes": 6000,
+    "sram_addr_offset": 29,
+    "fits_in_sram": false,
+    "num_sram_words": 3000
+  },
+  {
+    "layer": "backbone.features.3.1.block.1.1",
+    "original_params": 961,
+    "original_bytes": 3844,
+    "int8_bytes": 961,
+    "sram_addr_offset": 85,
+    "fits_in_sram": false,
+    "num_sram_words": 481
+  },
+  {
+    "layer": "backbone.features.3.1.block.2.fc1",
+    "original_params": 2410,
+    "original_bytes": 9640,
+    "int8_bytes": 2410,
+    "sram_addr_offset": 54,
+    "fits_in_sram": false,
+    "num_sram_words": 1205
+  },
+  {
+    "layer": "backbone.features.3.1.block.2.fc2",
+    "original_params": 2640,
+    "original_bytes": 10560,
+    "int8_bytes": 2640,
+    "sram_addr_offset": 107,
+    "fits_in_sram": false,
+    "num_sram_words": 1320
+  },
+  {
+    "layer": "backbone.features.3.1.block.3.0",
+    "original_params": 9600,
+    "original_bytes": 38400,
+    "int8_bytes": 9600,
+    "sram_addr_offset": 19,
+    "fits_in_sram": false,
+    "num_sram_words": 4800
+  },
+  {
+    "layer": "backbone.features.3.1.block.3.1",
+    "original_params": 161,
+    "original_bytes": 644,
+    "int8_bytes": 161,
+    "sram_addr_offset": 83,
+    "fits_in_sram": true,
+    "num_sram_words": 81
+  },
+  {
+    "layer": "backbone.features.4.0.block.0.0",
+    "original_params": 9600,
+    "original_bytes": 38400,
+    "int8_bytes": 9600,
+    "sram_addr_offset": 36,
+    "fits_in_sram": false,
+    "num_sram_words": 4800
+  },
+  {
+    "layer": "backbone.features.4.0.block.0.1",
+    "original_params": 961,
+    "original_bytes": 3844,
+    "int8_bytes": 961,
+    "sram_addr_offset": 100,
+    "fits_in_sram": false,
+    "num_sram_words": 481
+  },
+  {
+    "layer": "backbone.features.4.0.block.1.0",
+    "original_params": 2160,
+    "original_bytes": 8640,
+    "int8_bytes": 2160,
+    "sram_addr_offset": 69,
+    "fits_in_sram": false,
+    "num_sram_words": 1080
+  },
+  {
+    "layer": "backbone.features.4.0.block.1.1",
+    "original_params": 961,
+    "original_bytes": 3844,
+    "int8_bytes": 961,
+    "sram_addr_offset": 125,
+    "fits_in_sram": false,
+    "num_sram_words": 481
+  },
+  {
+    "layer": "backbone.features.4.0.block.2.fc1",
+    "original_params": 2410,
+    "original_bytes": 9640,
+    "int8_bytes": 2410,
+    "sram_addr_offset": 94,
+    "fits_in_sram": false,
+    "num_sram_words": 1205
+  },
+  {
+    "layer": "backbone.features.4.0.block.2.fc2",
+    "original_params": 2640,
+    "original_bytes": 10560,
+    "int8_bytes": 2640,
+    "sram_addr_offset": 19,
+    "fits_in_sram": false,
+    "num_sram_words": 1320
+  },
+  {
+    "layer": "backbone.features.4.0.block.3.0",
+    "original_params": 19200,
+    "original_bytes": 76800,
+    "int8_bytes": 19200,
+    "sram_addr_offset": 59,
+    "fits_in_sram": false,
+    "num_sram_words": 9600
+  },
+  {
+    "layer": "backbone.features.4.0.block.3.1",
+    "original_params": 321,
+    "original_bytes": 1284,
+    "int8_bytes": 321,
+    "sram_addr_offset": 59,
+    "fits_in_sram": false,
+    "num_sram_words": 161
+  },
+  {
+    "layer": "backbone.features.4.1.block.0.0",
+    "original_params": 38400,
+    "original_bytes": 153600,
+    "int8_bytes": 38400,
+    "sram_addr_offset": 92,
+    "fits_in_sram": false,
+    "num_sram_words": 19200
+  }
+]

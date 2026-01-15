@@ -1,0 +1,36 @@
+library(sky130_sram_lib) {
+    delay_model: table_lookup;
+    time_unit: 1ns;
+    power_unit: 1mW;
+    voltage_unit: 1V;
+    current_unit: 1mA;
+    
+    cell(sram_16x128_design1) {
+        memory() {
+            type: ram;
+            address_width: 7;
+            word_width: 16;
+            depth: 128;
+        }
+        
+        pin(CLK) { direction: input; }
+        pin(WE) { direction: input; }
+        pin(RE) { direction: input; }
+        pin(A[0:6]) { direction: input; }
+        pin(DIN[0:15]) { direction: input; }
+        pin(DOUT[0:15]) { direction: output; }
+        
+        timing() {
+            related_pin: CLK;
+            when: "WE";
+            rise_time: 0.15;
+            fall_time: 0.12;
+            rise_propagation_delay: 0.4;
+            fall_propagation_delay: 0.38;
+        }
+        
+        leakage_power() {
+            value: 2.3;  # in mW
+        }
+    }
+}

@@ -1,0 +1,48 @@
+VERSION 5.8;
+NAMESCASESENSITIVE ON;
+DIVIDERCHAR "/";
+BUSBITCHARS "[]";
+
+MACRO sram_16x128_design1
+    CLASS BLOCK;
+    SIZE 120.0 BY 200.0;
+    
+    PIN CLK
+        DIRECTION INPUT;
+        USE SIGNAL;
+        PORT
+            LAYER M5;
+            RECT 5.0 195.0 10.0 200.0;
+        END
+    END CLK
+    
+    PIN A0
+        DIRECTION INPUT;
+        USE SIGNAL;
+    END A0
+    
+    PIN DIN0
+        DIRECTION INPUT;
+        USE SIGNAL;
+    END DIN0
+    
+    PIN DOUT0
+        DIRECTION OUTPUT;
+        USE SIGNAL;
+    END DOUT0
+    
+    PIN VSS
+        DIRECTION INOUT;
+        USE GROUND;
+    END VSS
+    
+    PIN VDD
+        DIRECTION INOUT;
+        USE POWER;
+    END VDD
+    
+    OBS
+        LAYER M1;
+        RECT 0.0 0.0 120.0 200.0;
+    END
+ENDMACRO sram_16x128_design1

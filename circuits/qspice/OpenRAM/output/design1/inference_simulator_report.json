@@ -1,0 +1,41 @@
+{
+  "model": {
+    "name": "EfficientNet-B0",
+    "total_parameters": 4058580,
+    "float32_size_mb": 15.482254028320312,
+    "int8_size_mb": 3.870563507080078,
+    "original_accuracy": 88.74833555259654
+  },
+  "hardware": {
+    "sram_capacity_bytes": 256,
+    "sram_capacity_kb": 0.25,
+    "sram_word_size_bits": 16,
+    "sram_frequency_mhz": 100,
+    "sram_access_time_ns": 1.2
+  },
+  "mapping_strategy": {
+    "quantization": "INT8",
+    "compression_ratio": 4.0,
+    "total_layers": 131,
+    "layers_requiring_swap": 124
+  },
+  "performance": {
+    "inference_latency_ms": 36.5929,
+    "throughput_inferences_per_sec": 27.327705647816927,
+    "memory_read_time_ms": 20.2929,
+    "compute_time_ms": 3.9,
+    "swap_overhead_ms": 12.4,
+    "cpu_speedup": 4.099155847172539
+  },
+  "power": {
+    "average_power_mw": 12.420241904850393,
+    "energy_per_inference_mj": 0.45449266999999993,
+    "sram_standby_mw": 2.3,
+    "sram_read_mw": 12.3
+  },
+  "accuracy": {
+    "float32_accuracy": 88.74833555259654,
+    "int8_accuracy_estimated": 88.73833555259654,
+    "accuracy_loss_percent": 1.0
+  }
+}

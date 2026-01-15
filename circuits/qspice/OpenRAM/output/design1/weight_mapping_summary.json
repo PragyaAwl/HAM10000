@@ -1,0 +1,36 @@
+{
+  "model_analysis": {
+    "total_parameters": 4058580,
+    "total_size_float32_mb": 15.482254028320312,
+    "total_size_int8_mb": 3.870563507080078,
+    "total_size_int4_mb": 1.935281753540039,
+    "num_layers": 131
+  },
+  "sram_configuration": {
+    "word_size_bits": 16,
+    "num_words": 128,
+    "total_bytes": 256,
+    "access_time_ns": 1.2,
+    "cycle_time_ns": 10.0,
+    "clock_mhz": 100.0
+  },
+  "mapping_strategy": {
+    "quantization": "INT8 (4x compression)",
+    "layers_fit_in_sram": 7,
+    "layers_requiring_swap": 124,
+    "total_layers": 131
+  },
+  "inference_performance": {
+    "weight_read_time_ms": 20.2929,
+    "compute_time_ms": 3.9,
+    "swap_overhead_ms": 12.4,
+    "total_inference_time_ms": 36.5929,
+    "throughput_inferences_per_sec": 27.327705647816927
+  },
+  "power_analysis": {
+    "avg_power_mw": 7.066197814330102,
+    "energy_per_inference_mj": 0.25857266999999995,
+    "standby_power_mw": 2.3,
+    "read_power_mw": 12.3
+  }
+}

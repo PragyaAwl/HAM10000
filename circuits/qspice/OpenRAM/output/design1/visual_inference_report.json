@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-01-16T00:51:13.683186",
+  "test_image": {
+    "index": 64,
+    "class": "mel",
+    "class_id": 4,
+    "dimensions": "28x28x3 -> 224x224x3"
+  },
+  "inference": {
+    "predicted_class": "mel",
+    "predicted_id": 4,
+    "confidence": 87.74724071308417,
+    "correct": true,
+    "latency_ms": 36.59,
+    "power_mw": 7.3,
+    "energy_mj": 0.267
+  },
+  "architecture": {
+    "total_layers": 131,
+    "total_parameters": 4058580,
+    "sram_capacity_bytes": 256,
+    "layers_in_sram": 7,
+    "layers_requiring_swap": 124
+  },
+  "timing": {
+    "memory_access_ms": 20.29,
+    "computation_ms": 3.9,
+    "layer_swap_ms": 12.4,
+    "total_ms": 36.59
+  }
+}

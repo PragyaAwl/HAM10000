@@ -1,0 +1,222 @@
+* SRAM 16x128 - Detailed CMOS Netlist
+* sky130 130nm Technology
+* Shows transistor-level implementation
+
+.title SRAM 16x128 - CMOS Transistor Level
+
+* =====================================================
+* COMPONENT LIBRARIES (Models)
+* =====================================================
+.include sky130_models.lib
+
+* =====================================================
+* POWER SUPPLIES
+* =====================================================
+VDD VDD 0 DC 1.8
+VSS VSS 0 DC 0
+
+* =====================================================
+* CLOCK SIGNALS
+* =====================================================
+.param TCLK=10n
+VCK CK 0 PULSE(0 1.8 1n 0.5n 0.5n 4.5n {TCLK})
+
+* =====================================================
+* CONTROL SIGNALS
+* =====================================================
+VWE WE 0 DC 0       ; Write Enable
+VRE RE 0 DC 1       ; Read Enable
+VCS CS 0 DC 1       ; Chip Select
+
+* =====================================================
+* ADDRESS DECODER - 7 Bit Input (A[0:6])
+* =====================================================
+VA0 A0 0 PULSE(0 1.8 100n 0.1n 0.1n 5n 10n)
+VA1 A1 0 DC 0
+VA2 A2 0 DC 0
+VA3 A3 0 DC 0
+VA4 A4 0 DC 0
+VA5 A5 0 DC 0
+VA6 A6 0 DC 0
+
+* =====================================================
+* SINGLE 6T SRAM CELL MODEL
+* =====================================================
+* Cross-coupled inverter pair with pass gates
+* 
+*        M7(P-ch)
+*           |
+*        +--+--+
+*        |  Q  |  M1(N-ch) -- M3(N-ch)  Q'
+*        | Latch                        |
+*        +--+--+                     +--+--+
+*           |                        |      |
+*        M2(P-ch)                 M4(P-ch) |
+*           |                        |      |
+*           +--------+        +------+      |
+*                    |        |             |
+*               Pass Gate  Pass Gate    M6(N-ch)
+*              (M5-N-ch)  (M4-N-ch)        |
+*                    |        |            |
+*                   BL       BL_B      WORD_LINE
+*
+* Simplified subcircuit for one SRAM cell:
+
+.subckt SRAM_CELL Q Q_B BL BL_B WL VDD VSS
+
+* Cross-coupled inverters (latch)
+* Inverter 1: M1 (pull-down N-ch), M7 (pull-up P-ch)
+M1 Q Q_B VSS VSS nch W=0.5u L=0.25u
+M7 Q VDD Q_B VDD pch W=1u L=0.25u
+
+* Inverter 2: M3 (pull-down N-ch), M4 (pull-up P-ch)
+M3 Q_B Q VSS VSS nch W=0.5u L=0.25u
+M4 Q_B VDD Q VDD pch W=1u L=0.25u
+
+* Pass gates (access transistors)
+M5 Q BL WL VSS nch W=0.5u L=0.25u    ; Q to BL
+M6 Q_B BL_B WL VSS nch W=0.5u L=0.25u ; Q_B to BL_B
+
+.ends SRAM_CELL
+
+* =====================================================
+* BIT LINE SENSE AMPLIFIER (Differential Amplifier)
+* =====================================================
+.subckt SENSE_AMP BL BL_B SAEN DOUT VDD VSS
+
+* Cross-coupled P-ch input pair
+M_P1 N1 BL_B VDD VDD pch W=2u L=0.5u
+M_P2 N2 BL VDD VDD pch W=2u L=0.5u
+
+* Cross-coupled N-ch latch pair
+M_N1 N1 N2 VSS VSS nch W=1u L=0.25u
+M_N2 N2 N1 VSS VSS nch W=1u L=0.25u
+
+* Enable/disable switch
+M_EN N1 SAEN VSS VSS nch W=1u L=0.25u
+
+* Output buffer (inverter)
+M_BUF_P N1 DOUT VDD VDD pch W=2u L=0.25u
+M_BUF_N N1 DOUT VSS VSS nch W=1u L=0.25u
+
+.ends SENSE_AMP
+
+* =====================================================
+* WRITE DRIVER
+* =====================================================
+.subckt WRITE_DRIVER DIN DOUT_BAR BL BL_B WE VDD VSS
+
+* Pull-down network
+M_WD1 BL DIN VSS VSS nch W=1u L=0.25u
+M_WD2 BL_B DOUT_BAR VSS VSS nch W=1u L=0.25u
+
+* Pull-up network (weak)
+M_PU1 BL VDD VDD VDD pch W=0.5u L=0.25u
+M_PU2 BL_B VDD VDD VDD pch W=0.5u L=0.25u
+
+.ends WRITE_DRIVER
+
+* =====================================================
+* NAND GATE (2-input)
+* =====================================================
+.subckt NAND2 A B OUT VDD VSS
+
+* Pull-up: parallel P-channel
+M_P1 OUT A VDD VDD pch W=2u L=0.25u
+M_P2 OUT B VDD VDD pch W=2u L=0.25u
+
+* Pull-down: series N-channel
+M_N1 OUT A NET VSS nch W=1u L=0.25u
+M_N2 NET B VSS VSS nch W=1u L=0.25u
+
+.ends NAND2
+
+* =====================================================
+* INVERTER
+* =====================================================
+.subckt INV IN OUT VDD VSS
+
+M_P IN OUT VDD VDD pch W=2u L=0.25u
+M_N IN OUT VSS VSS nch W=1u L=0.25u
+
+.ends INV
+
+* =====================================================
+* MULTIPLEXER BANK (selects 1 output from 16 inputs)
+* =====================================================
+* Simplified: Just route selected data to output
+
+* MEMORY INSTANCE EXAMPLE (showing first cell)
+* =====================================================
+
+* Single SRAM cell at address 0, bit 0
+* Xsram_00 Q0 Q0_B BL0 BL0_B WL0 VDD VSS SRAM_CELL
+
+* Sense amplifier for bit line 0
+* Xsa_00 BL0 BL0_B SAEN DOUT0 VDD VSS SENSE_AMP
+
+* =====================================================
+* DUMMY LOAD RESISTORS (for simulation visibility)
+* =====================================================
+RCK CK 0 10k
+RA0 A0 0 10k
+RWE WE 0 10k
+RRE RE 0 10k
+
+* BIT LINE LOADS
+RBL0 BL0 0 100k
+RBL1 BL1 0 100k
+RBL2 BL2 0 100k
+
+* =====================================================
+* TEST STIMULUS
+* =====================================================
+
+* Address signals (test pattern)
+VADDR_A0 A0 0 PULSE(0 1.8 50n 0.1n 0.1n 5n 10n)
+VADDR_A1 A1 0 PULSE(0 1.8 60n 0.1n 0.1n 5n 10n)
+VADDR_A2 A2 0 PULSE(0 1.8 70n 0.1n 0.1n 5n 10n)
+
+* Data input
+VDIN0 DIN0 0 PULSE(0 1.8 20n 0.1n 0.1n 2n 5n)
+VDIN1 DIN1 0 PULSE(0 1.8 25n 0.1n 0.1n 2n 5n)
+
+* Read enable
+VRE_TEST RE 0 PULSE(0 1.8 80n 0.1n 0.1n 10n 20n)
+
+* Write enable  
+VWE_TEST WE 0 PULSE(0 1.8 10n 0.1n 0.1n 2n 10n)
+
+* =====================================================
+* SIMULATION CONTROL
+* =====================================================
+.tran 0 100ns 0 0.1ns
+
+* =====================================================
+* ANALYSIS & MEASUREMENTS
+* =====================================================
+
+.meas tran CLK_FREQ TRIG v(CK) VAL=0.9 RISE=1 TARG v(CK) VAL=0.9 RISE=2
+
+* Measure address transition time
+.meas tran ADDR_RISE TRIG v(A0) VAL=0.9 RISE=1 TARG v(A0) VAL=0.9 RISE=2
+
+* Measure read/write delays
+.meas tran READ_DELAY TRIG v(RE) VAL=0.9 RISE=1 TARG v(A0) VAL=0.9 RISE=1
+
+.meas tran WRITE_DELAY TRIG v(WE) VAL=0.9 RISE=1 TARG v(DIN0) VAL=0.9 RISE=1
+
+* =====================================================
+* OUTPUT AND PLOTTING
+* =====================================================
+
+.plot tran v(CK) v(WE) v(RE) v(CS) v(A0) v(A1) v(A2) v(DIN0) v(DIN1)
+
+* Plot bit lines (show internal signals)
+.plot tran v(BL0) v(BL0_B)
+
+* =====================================================
+* END OF NETLIST
+* =====================================================
+
+.end
